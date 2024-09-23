@@ -1,0 +1,1003 @@
+\documentclass[11pt]{article}
+
+\usepackage[a4paper]{geometry}
+\geometry{left=2.0cm,right=2.0cm,top=2.5cm,bottom=2.5cm}
+
+\usepackage{ctex}
+\usepackage{amsmath,amsfonts,graphicx,subfigure,amssymb,bm,amsthm}
+\usepackage{algorithm,algorithmicx}
+\usepackage[noend]{algpseudocode}
+\usepackage{fancyhdr}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{fontspec}
+\usepackage{adjustbox}
+\usepackage{breqn}
+\usepackage{fontsize}
+\usepackage{tikz,xcolor}
+\usepackage{multirow} 
+\usepackage{booktabs}
+\usepackage{tcolorbox}
+\usepackage{pdfpages}
+\usepackage{makecell}
+\usepackage{diagbox}
+\usepackage{footmisc}
+\usepackage{caption}
+\usepackage{pifont}
+\usepackage{framed}
+\setmainfont{Palatino Linotype}
+\setCJKmainfont{SimHei}
+\setCJKsansfont{Songti}
+\setCJKmonofont{SimSun}
+\punctstyle{kaiming}
+
+\renewcommand{\emph}[1]{\begin{kaishu}#1\end{kaishu}}
+
+%改这里可以修改实验报告表头的信息
+\newcommand{\experiName}{磁场的测量}
+\newcommand{\supervisor}{丰家峰}
+\newcommand{\name}{李果}
+\newcommand{\studentNum}{2022K8009906028}
+\newcommand{\class}{1}
+\newcommand{\group}{09}
+\newcommand{\seat}{8}
+\newcommand{\dateYear}{2023}
+\newcommand{\dateMonth}{12}
+\newcommand{\dateDay}{4}
+\newcommand{\room}{708}
+\newcommand{\others}{$\square$}
+%% 如果是调课、补课, 改为: $\square$\hspace{-1em}$\surd$
+%% 否则, 请用: $\square$
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%若需在页眉部分加入内容, 可以在这里输入
+% \pagestyle{fancy}
+% \lhead{\kaishu 测试}
+% \chead{}
+% \rhead{}
+
+\begin{center}
+    \LARGE \bf 《\, 基\, 础\, 物\, 理\, 实\, 验\, 》 \,实\, 验\, 报\, 告
+\end{center}
+
+% 不要忘了预习报告这个前缀可能还需要修改！
+
+\begin{center}
+    \noindent \emph{实验名称}\underline{\makebox[25em][c]{\experiName}}
+    \emph{指导教师}\underline{\makebox[8em][c]{\supervisor}}\\
+    \emph{姓名}\underline{\makebox[6em][c]{\name}}%%如果名字比较长, 可以修改box的长度"5em"
+    \emph{学号}\underline{\makebox[10em][c]{\studentNum}}
+    \emph{分班分组及座号} \underline{\makebox[5em][c]{\class \ -\ \group \ -\ \seat }\emph{号}} （\emph{例}:\, 1\,-\,04\,-\,5\emph{号}）\\
+    \emph{实验日期} \underline{\makebox[3em][c]{\dateYear}}\emph{年}
+    \underline{\makebox[2em][c]{\dateMonth}}\emph{月}
+    \underline{\makebox[2em][c]{\dateDay}}\emph{日}
+    \emph{实验地点}\underline{{\makebox[4em][c]\room}}
+    \emph{调课/补课} \underline{\makebox[3em][c]{\others\ 是}}
+    \emph{成绩评定} \underline{\hspace{5em}}
+    {\noindent}
+    \rule[8pt]{17cm}{0.2em}
+\end{center}
+
+\begin{center}
+\LARGE{磁场的测量}
+\end{center}
+
+
+
+\begin{kaishu}
+	注：为了便于满足丰老师的撰写要求，
+	实验数据表和由此作出的数据图像之外的图像、表格我都没有编号。且图像的描述单独作为一个部分，讨论题选择了一道进行论述。
+\end{kaishu}
+\section{实验目的}
+
+本实验共分为两部分: 利用霍尔效应实验仪测量磁感应强度; 亥姆霍兹线圈的磁感应强度测量。但是这两个实验都有一个固定的中心: 那就是进行磁场的测量。
+\begin{enumerate}
+    \item [·]利用霍尔效应实验仪测量磁感应强度——理解霍尔效应原理及霍尔元件有关参数的含义和作用；
+    测绘霍尔元件的$V_H-I_S,V_H-I_M$曲线, 
+    了解霍尔电势差$V_H$与霍尔元件工作电流$I_S$, 磁感应强度$B$及励磁电流$I_M$之间的关系；学习并利用“对称交换测量法”的内在思想。
+
+    \item [·]亥姆霍兹线圈的磁感应强度测量——掌握载流圆线圈和亥姆霍兹线圈的磁感应强度分布。
+\end{enumerate} 
+
+
+
+
+\section{实验仪器用具}
+
+\subsection{利用霍尔效应实验仪测量磁感应强度}
+
+	本实验所用仪器有霍尔效应仪DH4512D、手持式万用表FLUKE17B+、
+	信号发生器DG1022U和台式万用表DM3058E。
+	其中霍尔效应仪由实验架和测试仪两部分组成，主要技术性能如下：
+
+	·电磁铁磁场可调范围0-350mT，励磁电流0-0.5A连续可调(<1mA，三位半数字电压表显示)，
+	霍尔电压表0-2.0000V(0.1mV，四位半数字电压表显示)，
+	霍尔工作电流0-3.5mA连续可调(10$\rm \mu A$，三位半数字电压表显示)，数字特斯拉计测量范围0-1000.0mA(0.1mT，四位半数字电压表显示)。
+
+	·励磁电流与霍尔工作电流采用电子换向开关。可移动尺调节范围为$14-44$mm。
+
+这一实验的实验仪器示意图或实物图如下：
+	\begin{figure}[H]
+		\centering
+		\emph{\subfigure[霍尔效应实验仪结构示意图]{
+				\includegraphics[width=7cm]{1-a.png}}}
+		\hspace{0.5in}
+		\emph{\subfigure[测试仪的实物图]{
+				\includegraphics[width=7cm]{2-b.png}}}
+		\hspace{0.5in}
+		\bf\emph{\caption*{图：霍尔效应实验器材}}
+	\end{figure}
+
+\subsection{亥姆霍兹线圈的磁感应测量}
+	本实验所用仪器有亥姆霍兹磁感应强度实验仪DH4501，
+	由亥姆霍兹线圈部分和磁感应强度测量仪部分和磁感应强度测量仪组成，其主要技术性能为：
+	
+	·亥姆霍兹线圈架：两个励磁线圈(有效半径105mm)，中心间距105mm，单个线圈匝数400匝。轴向与径向可移动距离分别为250mm和70mm，分辨率均为0.1mm。
+
+	·亥姆霍兹磁场测量仪：输出正弦波(电压幅度最大为20$V_{p-p}$，电流幅度最大为200mA)，数显毫伏表电压测量范围为0-20mV(误差1\%)，频率范围为20-200Hz(分细调和粗调，分辨率0.1Hz，误差0.1\%)，电源输出为$220\pm 10\%$V。
+
+	这一实验的实验仪器实物图如下：
+	\begin{figure}[H]
+		\centering
+		\emph{\subfigure[亥姆霍兹线圈架实物图]{
+				\includegraphics[height=4cm]{3-b.png}}}
+		\hspace{0.5in}
+		\emph{\subfigure[磁感应强度测量仪实物图]{
+				\includegraphics[height=4cm]{4-b.png}}}
+		\hspace{0.5in}
+		\bf\emph{\caption*{图：亥姆霍兹磁感应强度实验仪的实物图}}
+	\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{实验原理}
+\begin{kaishu}
+	注：本实验的知识点及相应公式推导都可以在赵凯华《电磁学》中找到，下面对实验原理进行简单叙述。
+\end{kaishu}
+
+\subsection{利用霍尔效应实验仪测量磁感应强度}
+
+	\subsubsection{霍尔效应}
+	霍尔效应简单来说就是导体或半导体中带电粒子在磁场中运动而
+	受到洛伦兹力的作用形成偏转，
+	这种偏转使得导体或者半导体的某一边聚集起带电粒子，
+	最终洛伦兹力和带电粒子聚集形成的电场带来的作用相抵之后形成稳定的电势差。
+	记X方向长度记为$L$，Y方向长度记为$b$，Z方向长度记为$l$，
+	可以得到霍尔电势和磁感应强度与霍尔电流的关系式：
+	\begin{equation*}
+		V_H=E_Hl=\frac{I_SB}{ned}=R_H\frac{I_SB}{d}=K_HI_SB
+	\end{equation*}
+	
+	其中$R_H$是霍尔系数，$K_H$就是霍尔灵敏度，
+	都是用来衡量材料霍尔效应强弱的重要参数。
+	后者又表示霍尔元件在单位磁感应强度和单位控制电流下的霍尔电势大小，在后续实验中我们还要测量计算它。
+	
+\subsubsection{实验系统误差及其消除}
+
+	在测量霍尔电势$V_H$的时候，会产生一些负效应，
+	其产生的电势叠加在霍尔电势上，
+	使得测量有系统误差，这些负效应有：
+
+	\begin{itemize}
+
+	\item {不等位电势$V_0$}\qquad
+	在霍尔元件的制作中难免会出现电阻率不均、
+	控制电流极板接触不良和霍尔电极引线不绝对对称的情况，就会
+	产生不等位电势$V_0=I_SR_0$，$R_0$为等势面间的电阻，从中可知不等位电势$V_0$的正负仅随霍尔电流变化。
+
+	\item 爱廷豪森效应\qquad 	
+	在元件的X方向通上电流、Z方向加上磁场的时候，
+	在Y方向除了有霍尔电势，还会有Ettingshausen在1887年发现的温度梯度，
+	满足：$\frac{\partial T}{\partial y}=PI_HB$。其中$P$称为爱廷豪森系数，温度梯度加上霍尔元件和两端电极材料不同，
+	于是组成了热电偶，能产生了温差电动势。
+	值得注意的是，这一效应造成的误差不能在测量中消除。
+
+	\item 能斯特效应\qquad 
+	由于控制电流的两个电极与霍尔元件的接触电阻不同，控制电流在两电极处
+	将产生不同的焦耳热，引起两电极间的温差电动势，此电动势又产生温差电流（称
+	为热电流）Q，热电流在磁场作用下将发生偏转，结果在y方向上产生附加的电势
+	差$V_H$，且$V_H\propto QB$。
+
+	\item Righi-Leduc效应\qquad
+	这一效应的原理和爱廷豪森效应一样，
+	但是引发温度梯度的电流不是霍尔电流$I_S$，
+	而是能斯特效应里面产生的温差电流。
+	温差电流同样给Y轴方向附加的额外的
+	电势$V_R\propto QB$。
+
+	\end{itemize}
+
+	所以要想减少和消除以上所述各个效应的附加电势差，
+	我们采用【对称（交换）测量法】，
+	即利用这些附加电势差与霍尔元件工作电流$I_S$与磁感应强度$B$的关系，
+	有如下的形式：
+	\begin{table}[H]
+		\centering
+		\caption*{表：不同符号的$I_s$、$I_M$下的电压表达式}
+		\begin{tabular}{ccc}
+			\toprule
+			 \multicolumn{2}{c}{符号} &\multirow{2}*{电压表达式}  \\ 
+			\cmidrule{1-2}
+			$I_S$ & $I_M$ &  \\ 
+			\midrule
+			+ & + & $V_{AB1}=+V_H+V_0+V_E+V_N+V_R$ \\ 
+			+ & - & $V_{AB2}=-V_H+V_0-V_E+V_N+V_R$ \\ 
+			- & - & $V_{AB3}=+V_H-V_0+V_E-V_N-V_R$ \\ 
+			- & + & $V_{AB4}=-V_H-V_0-V_E-V_N-V_R$ \\ 
+			\bottomrule
+		\end{tabular}
+	\end{table}
+
+	不难发现将上述式子作如下四则运算可以得到$\frac{1}{4}(V_{AB1}-V_{AB2}+V_{AB3}-V_{AB4})=V_H+V_E$
+	这就消除了除爱廷豪森效应附加电动势之外的电动势，
+	而爱廷豪森效应无法通过这一方法消除，
+	不过，在小电流和小磁场的条件下有$V_H\gg V_E$，所以可以近似认为：
+	\begin{equation*}
+		V_H\approx V_H+V_E=\frac{V_1-V_2+V_3-V_4}{4}
+	\end{equation*}
+
+	\subsection{亥姆霍兹线圈的磁感应测量}
+\subsubsection{载流圆线圈的磁感应强度}
+	半径为$R$，通有电流为$I$的原线圈，经过理论计算得到的轴线上的强度公式为：
+	\begin{equation*}
+		B=\frac{\mu_0N_0IR^2}{2(R^2+N^2)^{\frac{3}{2}}}
+	\end{equation*}
+	
+	其中$N_0$为线圈的匝数，$X$为轴上某一点到圆心O的距离。$\mu_0$为真空磁导率，值为4$\pi\times10^{-7}$H/m。
+	在本实验中，$N_0=400$匝，$R=105$mm，当设定$I=60mA$的时候，可知道圆心O处的磁感应强度为$B_0=0.144$mT。
+
+	\subsubsection{亥姆霍兹线圈的磁感应强度}
+	亥姆霍兹线圈为两个相同的原线圈彼此平行共轴，间距为半径，
+	同时在线圈上通上同向的相同的电流$I$。这时候在两个线圈中间较大范围内的空间的磁感应强度是近似均匀分布的，
+	如\figurename7所示。经过理论可以知道在亥姆霍兹线圈轴线中心O处，有磁感应强度为
+	\begin{equation*}
+		B=\frac{\mu_0N_0I}{2R}\times\frac{16}{5^{\frac{3}{2}}}
+	\end{equation*}
+
+	本实验中$N_0=400$匝，$R=105$mm，当设定$I=60$mA的时候，
+	可以知道在亥姆霍兹线圈中心处的磁场强度为$B=0.144\times1.431=0.206$mT。
+
+	\subsubsection{电磁感应与探测线圈设计}
+	根据电磁感应定律可以知道感应线圈在交变磁场中的感应电动势的大小满足如下的关系：
+	\begin{equation*}
+		\varepsilon=-\frac{\mathrm{d}\Phi}{\mathrm{d}t}=-NS\omega B_m\cos\theta\cos\omega t=-\varepsilon_m\cos\omega t
+	\end{equation*}
+
+	其中$N$为探测线圈的匝数，$S$为该线圈的截面积，
+	$\theta$为$B$和线圈法方向的夹角。
+	当$\theta=0$的时候，有$\varepsilon_m$最大，
+	此时的感应电动势的振幅最大，
+	有效值为$U_{max}=\dfrac{\varepsilon_{max}}{\sqrt{2}}$，
+	于是反过来有：$B_{max}=\frac{\varepsilon_{max}}{NS\omega}=\frac{\sqrt{2}U_{max}}{NS\omega}$
+	
+	在实际的实验中，由于磁感应强度的不均匀性，
+	探测线圈的实际截面积收到线圈的内径和外径的影响，
+	一般来说有内径与外径满足$d\leq D/3$的关系，
+	而等效面积经过理论计算为$S=\frac{13}{108}\pi D^2$
+	此时便可以得到：
+	\begin{equation*}
+		B=\frac{54}{13\pi^2ND^2f}U_{max}
+	\end{equation*}
+	本实验中有$I=60$mA，$f=120$Hz，$D=0.012$m，$N=1000$匝，所以只需读出交流毫伏显示表上的读书，即可计算出磁感应强度。
+
+	最后附上线圈的磁场强度分布图，我们实验数据大体要符合这样的分布规律：
+	\begin{figure}[h!]
+		\centering
+		\emph{\subfigure[单个线圈]{
+				\includegraphics[height=6cm]{222.png}}}
+		\hspace{0.5in}
+		\emph{\subfigure[亥姆霍兹线圈]{
+				\includegraphics[height=6cm]{7.png}}}
+		\hspace{0.5in}
+		\bf\emph{\caption*{图：线圈磁感应强度分布}}
+	\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{实验内容与过程}
+
+
+\subsection{利用霍尔效应实验仪测量磁感应强度：DC霍尔元件}
+	DC霍尔元件只需要用到霍尔效应仪和若干导线，连线较为简单。
+    将实验架的励磁电流$I_M$、霍尔电流$I_S$、霍尔电压$V_H$的
+	输入正负分别和测试仪的对应参量的输出正负相连即可。
+
+    将实验架的传感器插座用引线和测试仪的毫特计传感器接口相连，
+	在做完以上的工作后，
+    如果发现实验架控制电源输入未接入测试仪背部的控制电源输出插孔，
+	则需要连接。
+	观察霍尔元件的位置，将其调整到电磁铁的中央。
+	打开开关，预热一段时间之后，即可进行实验。
+	
+	在这一部分我们需要进行四组测量，在完成调零操作之后，就可以依次进行：
+	
+
+(1)$V_H$和$I_S$的关系——设定$I_M=200\,\,{\rm mA}$，将$I_S$从0开始，以0.50mA为间隔调节，记录到3.00mA时。
+
+(2)$V_H$与$B$的关系——设定$I_S=1.00\,\,{\rm mA}$，将$I_M$从0开始，以50mA为间隔调节，记录到300mA时。
+
+(3)$B$与$I_M$的关系——设定$I_S=1.00\,\,{\rm mA}$，将$I_M$从0开始，以50mA为间隔调节，记录到300mA时。
+
+(4)电磁铁磁场沿水平方向分布——设定$I_M=200\,\,{\rm mA}$，利用可移动尺，调节传感器在电磁铁中的位置，记录偏移量$X$以及相应情况下的毫特计的读数$B$。
+注意调节距离从14mm开始，以2mm为一组，一直测量到无法继续移动为止。
+
+	
+值得注意的是，上述前三个部分实验中，每一次记录数据时都要改变$I_S$、$I_M$的正负方向，记录四次。最后一个部分实验中切勿强行移动可移动尺，以免对仪器造成损害。
+
+
+
+\subsection{利用霍尔效应实验仪测量磁感应强度：AC霍尔元件}
+
+	该实验需要重新连线，用到了手持式万用表、
+	台式万用表以及型号发生器。
+	
+	实验中我的连接、通电和测量的具体操作如下：
+	
+(1)维持控制电源、传感器和励磁电流$I_M$的连接线不动。
+
+(2)将霍尔电压的输出正负端连在台式万用表的输入正负端处。
+
+(3)电流的连接部分。实验中交流电来源于信号发生器，所以需要从信号发生器的
+	通道一处用转换接口连接两条引线，
+	一条线直接连接到霍尔工作电流的电极一端，
+	另一条线连接手持式万用表，
+	再通往霍尔工作电流的电极的另一端。
+
+(4)首先打开信号发生器，输出$f$=500Hz的电流，
+将万用表调到交流电测量档，调节信号发生器输出的电流的振幅，使万用表上显示的电流有效值$I_S$为1mA
+
+(5)将台式万用表打开，调整到交流电测量档，电磁铁的励磁电流$I_M$依次设置为0.05A、0.1A、0.15A和0.2A，记录下相应的台式万用表上的霍尔电压$V_H$.
+
+下图是连接和通电操作完成之后的实验记录图像：
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=14cm]{9.jpg}
+	\bf\emph{\caption*{图：霍尔效应AC部分实验连线实物图}} 
+	\end{figure}
+
+在实验完成后，拆卸下连接导线，分类整理放回原处，实验仪器调零后断开电源，并清洁桌面。
+
+	
+
+
+
+
+
+
+
+\subsection{亥姆霍兹线圈的磁感应测量}
+\begin{kaishu}
+	在本实验中，按照丰老师的要求，第二部分实验
+	从数据记录表的表10开始倒着进行。另外，
+	在本实验中需要多次使用手轮调整感应线圈的位置，
+	为了保护并且做到尊重实验仪器，需要小角度、高频率、轻力度的旋转，
+	尽量不发出明显声响。
+\end{kaishu}
+	
+\subsubsection{测量亥姆霍兹线圈磁感应强度的分布}
+
+	(1)使用前先开机预热10分钟左右(实际上等待老师讲完大体内容后即可开始)。
+	本实验中
+	需要将线圈架的输出电压的
+	正负极和测量仪的感应电压的正负极相连。
+	将线圈架的左励磁线圈的正级
+	连接在实验仪励磁电流输出端的正极，
+	线圈架的右励磁线圈的负极
+	连接在实验仪励磁电流输出端负极。
+	
+	(2)将感应线圈放置在轴向和径向的物理中心位置(本实验中均记录为0mm)，
+	并将感应线圈的法方向和亥姆霍兹线圈的轴线的夹角调整为0度。
+
+(3)励磁电流频率与磁场强度的关系：
+	将感应线圈固定在物理中心处，
+	保持励磁电流的有效值$I=60$mA不变，
+	调节输出电流频率，在20Hz～120Hz范围内每次频率改变10Hz，
+	依次记录下相应的感应电压$U_{max}$的数值。
+	注意，在调节输入电流的频率$f$的时候，
+	有效值会发生变化，
+	此时需要我们每一次都将有效值调回60mA。
+
+	(4)探测线圈夹角与感应电压关系测量：
+	将感应线圈回归物理中心，
+	扭转线圈的方向，以$10^{\circ}$为一组记录下对应的感应电压的数值，
+	只记录到180度。
+		
+	(5)磁场轴向分布测量：调节频率电位器，使频率表读数为120Hz；调节电流调节电位器，使励磁电流有效值为60mA。
+	在保持以上条件不变的情况下先在轴向方向上以物理中心为原点，
+	在-25mm到25mm的范围内以5mm为一组记录下相应的感应电压的数值。
+
+	(6)磁场径向分布测量：接下来将感应线圈回归物理中心，
+	在径向方向上同样在-25mm到25mm范围内
+	以5mm为一组记录下相应的感应电压的数值。
+
+	
+
+\subsubsection{测量圆电流线圈轴线上磁感应强度的分布}
+
+	(1)在做完亥姆霍兹线圈磁感应强度的分布的实验之后，
+	将线圈架的右励磁线圈的负极上的引线拔掉，插到左线圈的负极，
+	此时回路中只有一个通电线圈。
+
+	(2)调节频率使$f=120$Hz，调节励磁电流有效值为$I=60$mA。
+	
+	(3)以线圈所在的位置为原点(实验中我记录的位置为-53.5mm处)，在-25mm到25mm(即-28.5mm至-78.5mm)的范围内，
+每次改变5mm，记录相应的感应电压$U_{max}$的值。	
+	
+
+完成实验后，将各类实验仪器分类归纳整理好，
+并且调零后断开电源。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{数据获取与处理}
+
+\subsection{利用霍尔效应实验仪测量磁感应强度}
+
+{\large\textcircled{\small{1}}}控制$I_M=200\,\,{\rm mA}$，记录霍尔电压$V_H$与工作电流$I_S$的数据如下：
+
+\begin{table}[H]
+    \centering
+    \caption{霍尔电压与工作电流数据记录表}
+    \begin{tabular}{cccccc}
+        \toprule
+        \multirow{2}*{$\rm I_S(mA)$} & $\rm V_1(mV)$ & $\rm V_2(mV)$ & $\rm V_3(mV)$ &$\rm V_4(mV)$& \multirow{2}*{$V_H=\cfrac{V_1-V_2+V_3-V_4}{4}{\rm (mV)}$} \\ 
+        \cmidrule(lr){2-5}
+         & $\rm +I_M\,+I_S$ & $\rm +I_M\,-I_S$ & $\rm -I_M\,-I_S$& $\rm -I_M\,+I_S$  \\ 
+         \midrule
+        0  & 0 & 0 & 0 & 0 & 0.0  \\ 
+        0.50  & 25.1  & -25.1  & 24.5  & -24.5  & 24.8  \\ 
+        1.00  & 50.6  & -50.6  & 49.4  & -49.4  & 50.0  \\ 
+        1.50  & 75.7  & -75.8  & 74.0  & -74.0  & 74.9  \\ 
+        2.00  & 100.7  & -100.9  & 98.4  & -98.5  & 99.6  \\ 
+        2.50  & 126.1  & -126.4  & 123.2  & -123.4  & 124.8  \\ 
+        3.00  & 151.2  & -151.6  & 147.8  & -148.0  & 149.7 \\ 
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+
+{\large\textcircled{\small{2}}}控制$I_S=1.00\,\,{\rm mA}$，记录霍尔电压$V_H$与励磁电流$I_M$的数据如下：
+\begin{table}[H]
+    \centering
+    \caption{霍尔电压与励磁电流数据记录表}
+    \begin{tabular}{cccccc}
+        \toprule
+        \multirow{2}*{$\rm I_M(mA)$} & $\rm V_1(mV)$ & $\rm V_2(mV)$ & $\rm V_3(mV)$ &$\rm V_4(mV)$& \multirow{2}*{$V_H=\cfrac{V_1-V_2+V_3-V_4}{4}{\rm (mV)}$} \\ 
+        \cmidrule(lr){2-5}
+         & $\rm +I_M\,+I_S$ & $\rm +I_M\,-I_S$ & $\rm -I_M\,-I_S$& $\rm -I_M\,+I_S$  \\ 
+         \midrule
+        0 & 0.6 & -0.6 & -0.6 & 0.6 & 0.0  \\ 
+        50 & 13 & -13 & 11.8 & -11.8 & 12.4  \\ 
+        100 & 25.6 & -25.6 & 24.3 & -24.3 & 25.0  \\ 
+        150 & 37.8 & -37.8 & 36.8 & -36.8 & 37.3  \\ 
+        200 & 50.4 & -50.4 & 49.1 & -49.1 & 49.8  \\ 
+        250 & 62.6 & -62.6 & 61.5 & -61.5 & 62.1  \\ 
+        300 & 75.1 & -75.2 & 73.9 & -73.9 & 74.5 \\ 
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+{\large\textcircled{\small{3}}}控制$I_S=1.00\,\,{\rm mA}$，记录磁感应强度$B$与励磁电流$I_M$的数据如下：
+\begin{table}[H]
+    \centering
+    \caption{磁感应强度与励磁电流数据记录表}
+    \begin{tabular}{cccccc}
+        \toprule
+        \multirow{2}*{$\rm I_M(mA)$} & $\rm B_1(mT)$ & $\rm B_2(mT)$ & $\rm B_3(mT)$ &$\rm B_4(mT)$& \multirow{2}*{$B_H=\cfrac{B_1+B_2-B_3-B_4}{4}{\rm (mT)}$} \\ 
+        \cmidrule(lr){2-5}
+         & $\rm +I_M\,+I_S$ & $\rm +I_M\,-I_S$ & $\rm -I_M\,-I_S$& $\rm -I_M\,+I_S$  \\ 
+         \midrule
+        0 & -0.4  & -0.4  & -0.4  & -0.4  & 0.0  \\ 
+        50 & 37.3  & 37.3  & -37.3  & -37.3  & 37.3  \\ 
+        100 & 73.4  & 73.4  & -73.0  & -73.4  & 73.3  \\ 
+        150 & 110.0  & 110.1  & -109.8  & -109.7  & 109.9  \\ 
+        200 & 145.9  & 145.9  & -146.2  & -146.2  & 146.1  \\ 
+        250 & 182.5  & 182.5  & -182.2  & -182.2  & 182.4  \\ 
+        300 & 219.1  & 219.0  & -219.4  & -219.4  & 219.2 \\ 
+        \bottomrule
+    \end{tabular}
+\end{table}
+实际上，由理论结果知磁感应强度$B$与$I_S$无关，只依赖于$I_M$的大小与方向——
+从表3的数据也很明显地可以验证这一结果。
+根据表2与表3，可以绘制出$I_S\equiv 1.00\,\,{\rm mA}$时，
+相同$I_M$下的霍尔电压$V_H$与磁感应强度$B$的关系曲线：
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=7cm]{111.png}
+    \caption*{图：等励磁电流条件下霍尔电压与磁感应强度的关系}
+\end{figure}
+由图像结合关系式：
+\[
+   V_H= K_H I_S B
+\]
+可知霍尔元件敏感度的测量值及相对误差$\eta$为（据实验仪上标注$K_{H0}=340\,\,{\rm V/(T\cdot A)}$，由此作为理论值）：
+\[
+   K_H=\frac{0.34068}{1\times 10^{-3}} {\rm V/(T\cdot A)}=340.68\,\,{\rm V/(T\cdot A)} \qquad \eta =\frac{|K_H-K_{H0}|}{K_{H0}}=0.20\%
+\]
+
+另外由图5（见下一Section）的拟合结果可知AC模式下霍尔元件灵敏度测量值及相对误差为：
+\[
+    K'_H=\frac{0.248876}{0.730800\times 10^{-3}} {\rm V/(T\cdot A)}=340.55\,\,{\rm V/(T\cdot A)} \qquad \eta' =\frac{|K'_H-K_{H0}|}{K_{H0}}=0.16\%
+\]
+可见本次实验DC和AC模式测量数据之精准。
+
+{\large\textcircled{\small{4}}}控制$I_M=200\,\,{\rm mA}$，记录电磁铁磁感应强度$B$与水平方向移动距离$X$的数据如下：
+\begin{table}[H]
+    \centering
+    \caption{电磁铁磁场沿水平方向分布数据记录表}
+    \begin{tabular}{cc}
+        \toprule
+        $\rm X/mm$ & $\rm B/mT$ \\ 
+        \midrule
+        14 & 146.8  \\ 
+        16 & 146.8  \\ 
+        18 & 146.8  \\ 
+        20 & 146.8  \\ 
+        22 & 146.9  \\ 
+        24 & 146.9  \\ 
+        26 & 147.0  \\ 
+        28 & 147.0  \\ 
+        30 & 147.0  \\ 
+        32 & 147.0  \\ 
+        34 & 147.0  \\ 
+        36 & 146.4  \\ 
+        38 & 121.5  \\ 
+        40 & 63.6  \\ 
+        42 & 37.4 \\ 
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+
+{\large\textcircled{\small{5}}}控制$I_{S-AC}=1\,\,{\rm mA}$，得到磁感应强度$B$、霍尔电压$V_{H-AC}$与励磁电流$I_M$的数据如下：
+\begin{table}[H]
+    \centering
+    \caption{AC模式下霍尔效应测量磁场数据记录表}
+    \begin{tabular}{ccccc}
+        \toprule
+        $\rm I_M(mA)$ & 50 & 100 & 150 & 200 \\ 
+        \midrule
+        $\rm B(mT)$ & 37.1 & 73.7 & 110.3 & 146.7 \\ 
+        $\rm V_{H-AC}(mV)$& 12.238 & 24.678 & 37.168 & 49.554 \\ 
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\subsection{亥姆霍兹线圈的磁感应强度测量}
+
+
+ {\large\textcircled{\small{6}}}控制$I=60\,\,{\rm mA}$，得到磁场强度$B$与励磁电流频率$f$的数据如下：
+\begin{table}[H]
+    \centering
+    \caption{励磁电流频率对磁场强度的影响：数据记录表}
+	\resizebox{\linewidth}{!}{
+    \begin{tabular}{lccccccccccc}
+        \toprule
+        \makecell[l]{励磁电流频率\\$\rm f(Hz)$} & 20 & 30 & 40 & 50 & 60 & 70 & 80 & 90 & 100 & 110 & 120 \\ 
+        \midrule
+        $\rm U_{max}(mV)$ & 1.41 & 2.14 & 2.84 & 3.55 & 4.25 & 4.96 & 5.66 & 6.37 & 7.09 & 7.8 & 8.53 \\ 
+        \makecell[l]{测量值$ B$\\$=\frac{2.296}{f}U_{max}{\rm (mT)}$} & 0.2063  & 0.2087  & 0.2077  & 0.2077  & 0.2073  & 0.2073  & 0.2070  & 0.2071  & 0.2075  & 0.2075  & 0.2080 \\ 
+    \bottomrule
+    \end{tabular}
+	}
+\end{table}
+
+
+
+{\large\textcircled{\small{7}}}控制$I=60\,\,{\rm mA}$，$f=120\,\,{\rm Hz}$，得到感应电压$U$与探测线圈转角$\theta$的数据如下：
+\begin{table}[H]
+    \centering
+    \caption{探测线圈转角与感应电压的关系：数据记录表}
+    \begin{tabular}{ccc}
+        \toprule
+        探测线圈转角$\theta (\circ)$ & $\rm U(mV)$ & 计算值$ U=U_{max}\cos \theta $ \\ 
+        \midrule
+        0 & 8.52  & 8.52  \\ 
+        10 & 8.34  & 8.39  \\ 
+        20 & 7.99  & 8.01  \\ 
+        30 & 7.36  & 7.38  \\ 
+        40 & 6.55  & 6.53  \\ 
+        50 & 5.48  & 5.48  \\ 
+        60 & 4.32  & 4.26  \\ 
+        70 & 2.90  & 2.91  \\ 
+        80 & 1.59  & 1.48  \\ 
+        90 & 0.06  & 0.00  \\ 
+        100 & 1.34  & 1.48  \\ 
+        110 & 2.77  & 2.91  \\ 
+        120 & 4.22  & 4.26  \\ 
+        130 & 5.36  & 5.48  \\ 
+        140 & 6.60  & 6.53  \\ 
+        150 & 7.45  & 7.38  \\ 
+        160 & 8.08  & 8.01  \\ 
+        170 & 8.46  & 8.39  \\ 
+        180 & 8.57  & 8.52 \\ 
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+{\large\textcircled{\small{8}}}控制$I=60\,\,{\rm mA}$，$f=120\,\,{\rm Hz}$，得到亥姆霍兹线圈轴线上的磁场强度$B$与轴向距离$X$的数据如下：
+\begin{table}[H]
+    \centering
+    \caption{亥姆霍兹线圈轴线上的磁场分布：数据记录表}
+	\resizebox{\linewidth}{!}{
+    \begin{tabular}{lccccccccccc}
+        \toprule
+        轴向距离X(mm) & -25 & -20 & -15 & -10 & -5 & 0 & 5 & 10 & 15 & 20 & 25 \\ 
+        \midrule
+        $\rm U_{max}(mV)$ & 8.49 & 8.51 & 8.52 & 8.52 & 8.52 & 8.52 & 8.52 & 8.52 & 8.52 & 8.51 & 8.5 \\ 
+        \makecell[l]{测量值$B$\\$ =\frac{2.296}{f}U_{max}{\rm (mT)}$} & 0.2070  & 0.2075  & 0.2077  & 0.2077  & 0.2077  
+        & 0.2077  & 0.2077  & 0.2077  & 0.2077  & 0.2075  & 0.2073 \\ 
+       \bottomrule
+    \end{tabular}
+	}
+\end{table}
+
+\newpage
+{\large\textcircled{\small{9}}}控制$I=60\,\,{\rm mA}$，$f=120\,\,{\rm Hz}$，得到亥姆霍兹线圈径向上的磁场强度$B$与轴向距离$X$的数据如下：
+\begin{table}[H]
+    \centering
+    \caption{亥姆霍兹线圈径向磁场分布：数据记录表}
+	\resizebox{\linewidth}{!}{
+    \begin{tabular}{lccccccccccc}
+        \toprule
+        径向距离X(mm) & -25 & -20 & -15 & -10 & -5 & 0 & 5 & 10 & 15 & 20 &25\\ 
+        \midrule
+        $\rm U_{max}(mV)$ & 8.51 & 8.52 & 8.53 & 8.53 & 8.53 & 8.53 & 8.53 & 8.53 & 8.52 & 8.51&8.51 \\ 
+        \makecell[l]{测量值$ B$\\$=\frac{2.296}{f}U_{max}{\rm (mT)}$} & 0.2075  & 0.2077  & 0.2080  & 0.2080  & 0.2080  
+        & 0.2080  & 0.2080  & 0.2080  & 0.2077  & 0.2075 &0.2075\\ 
+         \bottomrule
+    \end{tabular}
+	}
+\end{table}
+
+{\large\textcircled{\small{10}}}控制$I=60\,\,{\rm mA}$，$f=120\,\,{\rm Hz}$，并利用$N_0=400$，$R=105\,\,{\rm mm}$，
+得到圆电流线圈轴线上的磁场强度$B$与轴向距离$X$之间的数据如下：
+
+\begin{table}[H]
+    \centering
+    \caption{圆电流线圈轴线上的磁场分布：数据记录表}
+	\resizebox{\linewidth}{!}{
+    \begin{tabular}{lccccccccccc}
+        \toprule
+        轴向距离X(mm) & -25 & -20 & -15 & -10 & -5 & 0 & 5 & 10 & 15 & 20 & 25 \\ 
+        \midrule
+        $\rm U_{max}(mV)$  & 5.36 & 5.54 & 5.7 & 5.81 & 5.9 & 5.95 & 5.97 & 5.94 & 5.88 & 5.77 & 5.64 \\ 
+        \makecell[l]{测量值$ B$\\$=\frac{2.296}{f}U_{max}{\rm (mT)}$} & 0.1307  & 0.1351  & 0.1390  & 0.1417  & 0.1439  & 0.1451  & 0.1456  & 0.1448  & 0.1434  & 0.1407  & 0.1375  \\ 
+        \makecell[l]{测量值$ B$\\$=\frac{\mu_0N_0IR^2}{2(R^2+X^2)^{3/2}}{\rm (mT)}$} & 0.1322  & 0.1361  & 0.1393  & 0.1417  & 0.1431  & 0.1436  & 0.1431  & 0.1417  & 0.1393  & 0.1361  & 0.1322 \\ 
+        \bottomrule 
+    \end{tabular}
+	}
+\end{table}
+
+
+
+
+\section{图表描述及总结}
+\begin{kaishu}
+	注：按照丰老师的要求，图1,2为左右图，共五行字加以说明；
+	图3,4为左右图，二加二行字加以说明；
+	图5单独放置，三行字加以说明；
+	图6,7为左右图，四至五行字加以说明(最好五行)；
+	图8,9为左右图，二加二行字加以说明；
+    图10为单独放置，三行字加以说明。
+    下面严格按照该标准执行。
+
+\end{kaishu}
+
+\subsection{利用霍尔效应实验仪测量磁感应强度}
+
+\begin{figure}[H]
+	\centering
+	\begin{minipage}{0.49\linewidth}
+		\centering
+		\includegraphics[height=5.9cm]{图片1.png}
+		\caption{霍尔电压与工作电流的关系}
+	\end{minipage}
+	\begin{minipage}{0.49\linewidth}
+		\centering
+		\includegraphics[height=5.9cm]{图片2.png}
+		\caption{霍尔电压与励磁电流的关系}
+	\end{minipage}
+\end{figure}
+
+左右图分别为$V_H$与$I_S$、$V_H$与$I_M$的关系图像，
+可以看出两张图的线性拟合程度都非常好：
+$R^2$的前五位小数都是9。且截距都很小（有很微小的误差，估计是霍尔片位置些许偏离中心导致的）：
+控制到$10^{-2}$量级。这说明我们两次实验的系统误差和测量误差都很小，
+符合预期$V_H\varpropto I_S$和$V_H\varpropto I_M$的理论结果。
+这其实并不意外：实验方法上两个实验均采取了“对称交换测量法”，
+最大程度地消除了负效应造成的误差；
+且实验过程中我都保持了操作的规范和步骤的完整。
+
+
+\begin{figure}[H]
+	\centering
+	\begin{minipage}{0.49\linewidth}
+		\centering
+		\includegraphics[height=4.8cm]{图片3.png}
+		\caption{磁感应强度与励磁电流的关系}
+	\end{minipage}
+	\begin{minipage}{0.49\linewidth}
+		\centering
+		\includegraphics[height=4.8cm]{图片4.png}
+		\caption{电磁铁磁场沿水平方向分布的规律}
+	\end{minipage}
+\end{figure}
+左图为$B$与$I_M$关系图，
+线性拟合的相关性$R^2=0.999986$且截距相比于测量值的量级十分小：
+充分验证了环路定理导出的理论结果，即$B\varpropto I_M$。
+
+右图为电磁铁磁场随水平方向$X$的变化。
+可见在靠近中心的较大范围内磁场都是很均匀的相差不到$\pm0.2\,\,{\rm mV}$，
+但在边缘处$B$值便急速下降。这也解释了为什么实验前需要调整传感器到靠近中心附近的位置。
+
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=7cm]{图片5.png}
+    \caption{交流模式下励磁电流与磁感应强度、霍尔电压之间的关系}
+\end{figure}
+
+图5为交变磁场霍尔效应实验中，$V_{H-AC}$、$B$与$I_M$的关系图：
+两条直线的拟合效果都非常好，$R^2$均为0.999998；且截距很小——与理论预期符合，
+磁感应强度和
+霍尔电压关于励磁电流都成精确的线性关系。其原因应和DC模式相同。
+利用该图还可以
+计算AC模式下的$K_H$，计算结果见上一Section的表3下的部分。
+
+
+
+\subsection{亥姆霍兹线圈的磁感应强度测量}
+
+\begin{figure}[H]
+	\centering
+	\begin{minipage}{0.49\linewidth}
+		\centering
+		\includegraphics[height=5.8cm]{图片6.png}
+		\caption{励磁电流频率对磁场强度的影响}
+	\end{minipage}
+	\begin{minipage}{0.49\linewidth}
+		\centering
+		\includegraphics[height=5.8cm]{图片7.png}
+		\caption{探测线圈转角与感应电压的关系}
+	\end{minipage}
+\end{figure}
+
+左图是$f$对磁场强度的影响图像，会发现变化并不规律——
+但在小尺度$0.001\,\,{\rm mT}$下的图像不规律很正常，
+从更大尺度范围来看亥姆霍兹线圈中心区域里的磁场是均匀的，这和预期结果吻合。
+
+右图是$\theta$与感应电压的关系图像。
+观察到从图像上理论值和实验值几乎完全重合，
+这验证了我们的理论公式$\varepsilon_m=NS\omega B_{m}\cos \theta$，
+即感应电压与线圈法方向和亥姆霍兹线圈轴线方向夹角在$U_{\max }$不变的情况下
+满足一个余弦关系。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{figure}[H]
+	\centering
+	\begin{minipage}{0.49\linewidth}
+		\centering
+		\includegraphics[height=5.5cm]{图片8.png}
+		\caption{亥姆霍兹线圈径向磁场分布}
+	\end{minipage}
+	\begin{minipage}{0.49\linewidth}
+		\centering
+		\includegraphics[height=5.5cm]{图片9.png}
+		\caption{亥姆霍兹线圈轴向磁场分布}
+	\end{minipage}
+\end{figure}
+
+左图为亥姆霍兹线圈磁场径向分布的图像，
+可见在中心处的一定范围内近乎均匀，
+而在边缘处略有下降——但整体是十分均匀的，
+相对偏差只有$\eta=0.24\%$，符合理想结果。
+
+右图为亥姆霍兹线圈磁场轴向分布的图像，
+同左图的变化趋势：在一定范围内磁场非常均匀，
+中心靠外处只有很小程度的下降，符合理想结果。
+
+
+
+
+
+
+
+
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=7cm]{图片10.png}
+    \caption{测量圆电流线圈轴线上磁感应强度的分布}
+\end{figure}
+
+可以明显地看出测量曲线与理论曲线相比发生了一部分“平移”
+，这是单线圈磁场中心和物理中心并不重合导致的。
+此外，两条曲线趋势完全一致，但数值上始终有一定的偏差，
+经计算其偏差均值为$1.44\%$，
+应是由于某种系统误差导致的。
+我猜测是由于线圈的有效半径并不是105mm，
+或许受到其缠绕厚度与热胀冷缩等因素的影响。
+
+
+
+
+
+
+
+\section{讨论题}
+\begin{kaishu}
+注：根据丰老师要求，讲义上的作业题(思考题)解答并不撰写在报告里，只回答课堂记录的两道讨论题中其一。
+另外每个子实验的感想总结也不单独罗列。
+\end{kaishu}
+
+\noindent 题目：
+
+检查并列举目前为止测量磁感应强度的方法，
+并选择其中一个加以详细描述(不能为本实验中的测量方法)。
+
+\begin{framed}
+我知晓或查阅到的方法有：
+霍尔效应法、磁感应强度法、磁力计法、
+汤姆生法、磁量子隧道效应法、磁力线追踪法、
+电磁感应法、核磁共振 (NMR) 
+和磁共振成像 (MRI) 技术、
+电流天平法、
+、磁偏转法、
+磁阻效应法、摇绳发电法、
+磁光克尔效应法、
+磁膜测磁法、
+磁致收缩法、
+超导效应法……
+
+我详细叙述“电流天平法”——
+实际上利用通电导线在磁场中受力的现象，
+可制成十分灵敏的电流天平。
+测量磁场时，依据力矩平衡条件，测出通电导线在匀强磁场中受力的大小，
+从而计算出磁感应强度。
+优点是测量十分精确，原理和操作都比较简单；缺点是只能测量匀强磁场的磁感应强度。
+\end{framed}
+
+
+
+% \section{其他的一些思考}
+
+
+
+
+
+\section{回顾磁场测量：我的收获与体悟}
+
+实验整体是有趣的，再加上丰老师幽默风趣、循循善诱的教学方式——引导让我们自己思考与探索，
+鼓励同学们相互帮助解决困难——让这次实验经历在10次物理实验中显得很是特别与难忘。
+
+霍尔效应的原理是极其简单的，但用途是很广泛，可拓展的物理现象是很深刻的。
+经过上学期电磁学的学习，亥姆霍兹线圈的磁场分布是比较了解的。
+但或许真正像这样动手测量一遍并绘制相关图像的过程中，
+对它们的认识又加深了一层。
+这应该就是物理“理论同实验相结合”的学科特色所呈现的魅力吧。
+
+
+
+
+
+
+
+
+
+
+
+\bigskip
+——————————
+
+附：原始数据记录表（预习报告课堂上已提交）
+\includepdf[pages={1-3}]{磁场数据记录.pdf}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
