@@ -1,0 +1,1279 @@
+\documentclass[11pt]{article}
+
+\usepackage[a4paper]{geometry}
+\geometry{left=2.0cm,right=2.0cm,top=2.5cm,bottom=2.5cm}
+
+\usepackage{ctex}
+\usepackage{amsmath,amsfonts,graphicx,subfigure,amssymb,bm,amsthm}
+\usepackage{algorithm,algorithmicx}
+\usepackage[noend]{algpseudocode}
+\usepackage{fancyhdr}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{fontspec}
+\usepackage{adjustbox}
+\usepackage{breqn}
+\usepackage{fontsize}
+\usepackage{tikz,xcolor}
+\usepackage{multirow} 
+\usepackage{booktabs}
+\usepackage{tcolorbox}
+\usepackage{pdfpages}
+% \usepackage{footmisc}
+\setmainfont{Palatino Linotype}
+\setCJKmainfont{SimHei}
+\setCJKsansfont{Songti}
+\setCJKmonofont{SimSun}
+\punctstyle{kaiming}
+
+\renewcommand{\emph}[1]{\begin{kaishu}#1\end{kaishu}}
+
+
+%改这里可以修改实验报告表头的信息
+\newcommand{\experiName}{傅里叶光学基础}
+\newcommand{\supervisor}{左战春}
+\newcommand{\name}{李果}
+\newcommand{\studentNum}{2022K8009906028}
+\newcommand{\class}{1}
+\newcommand{\group}{09}
+\newcommand{\seat}{8}
+\newcommand{\dateYear}{2023}
+\newcommand{\dateMonth}{11}
+\newcommand{\dateDay}{20}
+\newcommand{\room}{705}
+\newcommand{\others}{$\square$}
+%% 如果是调课、补课，改为： $\square$\hspace{-1em}$\surd$
+%% 否则，请用： $\square$
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\falfac}[1]{^{\underline{#1}}}
+\newcommand{\binomfrac}[2]{\frac{#1^{\underline{#2}}}{#2!}}
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\suminfty}[2]{\sum_{#1=#2}^{\infty}}
+\newcommand{\suminftyk}[0]{\sum_{k=0}^{\infty}}
+\newcommand{\sumint}[3]{\sum_{#1=#2}^{#3}}
+\newcommand{\sumintk}[2]{\sum_{k=#1}^{#2}}
+\newcommand{\suminti}[2]{\sum_{i=#1}^{#2}}
+
+
+\begin{document}
+\begin{center}
+    \LARGE \makebox[16em][s]{\bf{《\hspace{-0.2em} 基础物理实验\hspace{0.4em}》\hspace{-0.8em}实验报告}}
+\end{center}
+
+\begin{center}
+    \noindent \emph{实验名称}\underline{\makebox[25em][c]{\experiName}}
+    \emph{指导教师}\underline{\makebox[8em][c]{\supervisor}}\\
+    \emph{姓名}\underline{\makebox[6em][c]{\name}}%%如果名字比较长，可以修改box的长度"5em"
+    \emph{学号}\underline{\makebox[10em][c]{\studentNum}}
+    \emph{分班分组及座号} \underline{\makebox[5em][c]{\class \ -\ \group \ -\ \seat }\emph{号}} （\emph{例}：1\,-\,04\,-\,5\emph{号}）\\
+    \emph{实验日期} \underline{\makebox[3em][c]{\dateYear}}\emph{年}
+    \underline{\makebox[2em][c]{\dateMonth}}\emph{月}
+    \underline{\makebox[2em][c]{\dateDay}}\emph{日}
+    \emph{实验地点}\underline{{\makebox[4em][c]\room}}
+    \emph{调课/补课} \underline{\makebox[3em][c]{\others\ 是}}
+    \emph{成绩评定} \underline{\hspace{5em}}
+    {\noindent}
+    \rule[8pt]{17cm}{0.2em}
+\end{center}
+
+\begin{center}
+    \LARGE{傅里叶光学基础}
+\end{center}
+
+
+*由于本实验的特殊性，将实验目的、原理、结果及感想分析等部分以不同实验为单位撰写，
+不统一写在最前。
+\tableofcontents
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\section[阿贝成像与基本空间滤波]{Section ：阿贝成像与基本空间滤波}
+
+\subsection{实验目的}
+
+1、掌握一维导轨上光路的调节。
+
+2、通过搭建阿贝成像光路和观察不同空间滤波器的效果，
+体会和理解成像过程、频谱面、谱空间与实空间对应关系、
+空间滤波、衍射等物理概念。
+
+\subsection{实验器材}
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{cc}
+        \toprule
+        组件名称 & 包含器件\\ \midrule
+        激光器组件& 激光器、棱镜夹持器、一维平移台、宽滑块、支杆和套筒\\
+        扩束镜组件& 凹透镜（Φ$ 6$, $f$-$10$mm ）、透镜架、滑块、支杆和套筒\\ 
+        准直镜组件& 凸透镜（Φ$40$, $f$-$80$mm ）、透镜架、滑块、支杆和套筒\\ 
+        光栅字组件& 光栅字（Φ$40$, $10$线/mm ）、滑块、支杆和套筒\\ 
+        变换透镜组件& 凸透镜（Φ$76$, $f$-$175$mm ）、镜架、滑块、支杆和套筒\\ 
+        滤波器组件& 滤波器（低通、方向滤波）、干板架、滑块、支杆和套筒\\ 
+        白屏组件& 白屏、干板架、滑块、支杆和套筒\\ \bottomrule
+    \end{tabular}
+    \caption{阿贝成像实验：仪器与用具列表}
+\end{table}
+
+因为实验器材原因，本实验前两部分我更换了绿光光源进行实验。
+
+下面是我做实验前拍摄的实验器材总览
+（也基本包括了后续几个实验的器材，
+故后续不再展示）：
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=13cm]{实验器材总览.jpg}
+\end{figure}
+
+
+
+\subsection{实验原理}
+
+(1)关键——阿贝成像展示了傅里叶光学的内容——
+透镜操作下频谱面是存在且具有特殊意义的。
+
+
+
+(2)对透镜成像的不同理解——几何光学把‘物’理解为光源，
+‘像’是‘物’点发出的光在透镜操作后重新汇聚到的一点
+（或虚像，是光路反向延长线汇聚的一点），
+两者一一映射，
+透镜即实现这一映射的光学器件，即建立物与像之间的映射关系。
+而阿贝成像原理指出，除了‘物’和‘像’，
+成像的过程中还存在一个频谱面（透镜的后焦面）；
+现代光学则以“波前”等语言叙述证明光学相关理论。
+
+
+(3)我们较为详细讨论一下阿贝成像。
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=4cm]{阿贝成像原理.jpg}
+    \caption{阿贝成像原理}
+\end{figure}
+阿贝成像原理指出，光路中存在一个频谱面，
+在这里不同物发出的同频率、
+同偏振方向的光汇聚在如图的三个点上，
+且满足:
+\[
+    S_0=0\qquad S_{\pm 1} = \pm F\tan{\theta_i}\text{ , 其中}\sin{\theta_i} = f_i\lambda
+\]
+$f_i$为余弦光栅的空间频率，
+$\lambda$为光的波长。
+我们以这三个点为次级波源，
+计算他们发射球面波的复振幅，
+形成干涉，在光屏上的结果即为经典理论计算的结果:
+\[
+        U_{im}(x',y')=k{\rm e}^{ik\frac{{x^{'}}^2+{y^{'}}^2}{2z}}A_1(t_0+t_i\cos 2\pi f'_ix')
+\]
+从而可以得到以下结果：
+
+(i)频谱面上的点是同波长的光汇聚的点！
+因此对于经过光栅、
+透镜的光，
+我们可以通过在频谱面上的滤波器来限制得到图像的结果。
+频谱面上的图像和像面上的图像都是光的信息经过透镜操
+作和光场传播后，在特定位置形成的特定波前，
+但由于他们位置特殊，所以对他们进行的操作对人的帮助更大。
+
+(ii)对于通过光栅（也可以不通过，
+这样在频谱面形成的光斑是环形的）
+和透镜之后的光，
+我们可以在频谱面上加上遮挡光线的器具，
+或者用透明有色的物体限制通过的光波长范围，
+以实现“仅允许部分波长、偏振方向的光”通过的目的。
+
+(iii)本次实验便是通过放置在频谱面的滤波器滤掉多余的光波，
+仅保留需要的波长范围，
+以达到改变成像属性的目的。
+
+\subsection{光路布置和调节}
+
+在正式做实验之前，左老师特意强调了光路搭建的三个要求：“平行、等高、准直”。
+每个操作都有相应的细节对应：“平行”比较容易做到，因为本来就是一维光路，只需微调各透镜的角度，
+保证透镜面垂直入射光面即可（当然，要保证凹凸面对准平行光）；“等高”即将所需器材合至一起，
+调节高度并固定（可利用白屏辅助检查），推荐为90cm左右，可根据实际情况进行调整；
+“准直”可能是比较困难的步骤，进行准直镜的共焦调整之后，利用白屏远近移动以检查平行光质量。
+
+我在这部分实验中忽视了准直的重要性，导致后续现象不怎么明显，经询问左老师后发现是“平行光”比较发散。
+重新细致调整之后，才成功地完成了这个实验。这也提醒了我：后续每个实验都细致地按“平行等高准直”放置光路。
+
+根据讲义所写的过程，逐个安装并调整光学器件的位置。
+讲义中给出的参考距离基本正确，可以先按照该距离进行粗糙地安装。
+但注意光学仪器的位置并不等同于其下坐标的位置，
+而且需要注意部分仪器的位置有偏差（尤其是后续实验中的白光LED灯，必要时可以用尺子辅助观察）
+
+注意部件应当从激光器开始依次安装，
+并在确认位置无误后拧紧螺丝。如果在安装过程中发现光路有问题，
+应当从有问题的器件开始检查（就近调整原则）。
+
+我搭建的结果以及讲义的实物参考图如下：
+\begin{figure}[H]
+    \centering
+    \subfigure[阿贝成像的光路搭建]{
+        \includegraphics[height=6cm]{阿贝成像光路搭建.jpg}}
+    \hspace{0.3in}
+    \subfigure[讲义实物图]{
+        \includegraphics[height=4.5cm]{讲义实验一实物图.jpg}}
+    \caption{阿贝成像实验：光路搭建}
+\end{figure}
+
+后续需要安装滤波器。
+注意滤波器的位置应处在激光花样最清晰的位置，
+即频谱面处，后者可以用光屏来辅助寻找位置。
+
+
+% \begin{figure}[H]
+%     \centering
+%     \subfigure[数据制图]{\includegraphics[height=6.5cm]{1 1 -1.png}}\hspace{0.5cm}
+%     \subfigure[读取数据]{\includegraphics[height=6.5cm]{1 一级极大负.png}}
+%     \caption{双缝干涉实验：一级极大附近精细曲线（负角度）}
+% \end{figure}
+
+\subsection{观察“光”栅字的像和频谱}
+
+放置好光路图后，先观察没有滤波状态下的物像，
+当放大倍数足够大时（可以通过将白屏放置尽可能远来实现），
+可以观察到“光”字的像中间既有横向条纹，
+也有竖向条纹，呈清晰的点阵结构。
+这时候可以在变换透镜和白屏之间寻找频谱面，
+从而帮助我们分析光路结构，进行下一步实验。
+我的实验图像如下：
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[height=5cm]{}
+%     \caption{}
+% \end{figure}
+
+\begin{figure}[H]
+    \centering
+    \subfigure[未加滤波器的“光”]{\includegraphics[height=5cm]{未加滤波器的光字.jpg}}\hspace{0.5cm}
+    \subfigure[局部放大的细节：清晰的点阵结构]{\includegraphics[height=5cm]{图片111.png}}
+    \caption{阿贝成像：观察光栅的“光”}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=12cm]{阿贝成像的频谱面.jpg}
+    \caption{阿贝成像：观察频谱}
+\end{figure}
+
+
+
+% \begin{figure}[H]
+%     \centering
+%     \subfigure[未加滤波器的光字]{\includegraphics[height=7cm]{}}\hspace{0.5cm}
+%     \subfigure[清晰的频谱面]{\includegraphics[height=6.5cm]{g}}
+%     \caption{阿贝成像：观察光栅的“字”与频谱}
+% \end{figure}
+
+光像清晰明亮，频谱也已调整到最清晰处。
+
+\subsection{观察方向滤波、低通滤波和自制高通滤波的实际效果}
+
+\subsubsection*{1.6.1观察方向滤波}
+
+选择滤波器中的“缝”，在频谱面水平放置，
+使包括0级光斑在内的一排光斑通过，
+我们可以观察到“光”的像中间充满竖向条纹。如下图所示：
+
+\begin{figure}[H]
+    \centering
+    \subfigure[充满竖线条纹的“光”字]{\includegraphics[height=6.5cm]{横向滤波器的光字.jpg}}\hspace{0.5cm}
+    \subfigure[局部放大的细节：竖线结构]{\includegraphics[height=6.5cm]{横滤波细节.png}}
+    \caption{滤波器水平放置的滤波结果}
+\end{figure}
+
+\newpage
+将滤波器旋转九十度放置，同样让零级处在内的一排点通过，
+可以观察到“光”像中间充满横向条纹。如下图所示：
+
+\begin{figure}[H]
+    \centering
+    \subfigure[充满横线条纹的“光”字]{\includegraphics[height=6.5cm]{竖线滤波器的光字.jpg}}\hspace{0.5cm}
+    \subfigure[局部放大的细节：横线结构]{\includegraphics[height=5cm]{竖滤波细节.png}}
+    \caption{滤波器垂直放置的滤波结果}
+\end{figure}
+
+同样地，如果再旋转45°，则可以观察到“光”字中有
+与缝伸展方向垂直的斜条纹。
+如下图所示：
+
+\begin{figure}[H]
+    \centering
+    \subfigure[充满斜线条纹的“光”字]{\includegraphics[height=6.5cm]{倾斜45滤波器的光字.jpg}}\hspace{0.5cm}
+    \subfigure[局部放大的细节：左斜线结构]{\includegraphics[height=6.5cm]{斜滤波细节.png}}
+    \caption{滤波器倾斜放置的滤波结果}
+\end{figure}
+
+通过实验可以发现理论上的“光”字图像和
+实际观察到的狭缝滤波图像仍存
+在一定的差异。
+首先是观察到的图像并不完全由条纹组成，
+存在一些区域仍然是均匀填充的；并
+且，在“光”字的某些部位出现了明显的暗斑（主要集中于“光”字上方那一短竖线）。
+分析可能是因为：
+
+（1）在调节准直时操作还不够细致，
+仪器之间也并没有做到严格的“等高共轴”，
+得到的光并非严格意义上的平行光；
+
+（2）仪器本身可能存在
+缺陷和磨损。
+
+但总的来说，上述三个小实验
+清晰地展示了滤波器对像图像的影响，
+且体现了衍射的特性：某一方向限制越强，
+则这一方面衍射现象越明显。
+
+除此之外，我还想到一个问题——如果采用扇形的方向滤波器，实验图像又是怎样的呢？
+猜测会看到圆弧形的条纹结构，但由于时间关系，遗憾没能实际动手制作一个用以观察实验现象。
+
+
+\subsubsection*{1.6.2 观察低通滤波}
+
+根据前面原理部分，频谱面上$S_0$对应的就是物信息中的0频信息$A_1t_0$，
+且位于面内的原点处；而正负两方向的衍射点$S_{+1}$与$S_{-1}$，代表了指定频率$f'_i$的信息$A_1t_i$
+。其位置由焦距$F$以及衍射角$\theta_i$决定：空间频率越大，衍射角就越高，
+衍射点距离中心也就越远（左老师讲解时把其作为理论辅助实验的典型例子加以分析）
+。
+
+故本实验——观察低通滤波（“小孔滤波”）的操作为：将滤波器中的“孔”放置在频谱面，
+只让0级光斑通过。
+我们即可以观察到 “光”的像
+中间没有条纹，基本只剩下“光”字轮廓和实心填充。
+结果如图所示：
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=7cm]{小孔滤波的光字.jpg}
+    \caption{低通滤波结果}
+\end{figure}
+
+实际上，低通滤波器就是一个圆形光孔。
+由于图像的精细结构及突变部分主要由高
+频成分起作用，
+故经低通滤波后图像的精细结构消失，
+亮暗突变处变模糊。
+
+理论上的“光”字图像和实际观察到的图像仍存在一定的差异。
+首先是在“光”
+字的某些部位仍然存在不明显的条纹；
+同时，在“光”字的某些部位也出现了明显的暗斑。
+除了上一实验中已经分析过的原因，
+还可能是因为实验过程中使用的小孔略大，
+导致实际透过小孔的并非只有 0 级光点，
+因此观察到了部分条纹。
+
+在实验过程中，我还把小圆孔移到了中央以外的亮点上，
+此时在白屏上仍能看到不带网格的“光”字，只是较暗淡一些。
+这说明当物为“光”与网格的乘积时，其傅里叶谱是“光”的谱与网格的谱的卷
+积，因此每个亮点周围都是“光”的谱，
+再作傅里叶变换就还原成“光”字，这其实演示了傅里叶变换的乘积定理。
+
+\newpage
+\subsubsection*{1.6.3 观察高通滤波}
+
+类似的，要完成高通滤波操作，只需要将0级光斑附近遮盖，周围留缝使光通过即可。
+即采用自制的高通滤波器进行实验，我制作的“器材”以及观察到的现象如下：
+
+\begin{figure}[H]
+    \centering
+    \subfigure[自制的高通滤波器]{\includegraphics[height=6.5cm]{自制的高频滤波器.jpg}}\hspace{0.5cm}
+    \subfigure[高通滤波结果]{\includegraphics[height=6.5cm]{高频滤波的光字.jpg}}
+    \caption{高通滤波实验：自制器材与结果}
+\end{figure}
+
+高通滤波的图像理论上整体变暗，
+实验图像清晰地显示了这一点。
+
+值得一提的是，本部分实验中有的同学制作得精细：滤波器只将频谱面中最集中突出的九个点中心的一个保留。
+观察到的现象也很是符合预期。也给了我一些启发：了解原理的前提下尽可能操作细致，以达到最佳的实验效果。
+
+
+\subsection[阿贝成像实验：实验总结 ]{}
+
+\begin{center}
+    \begin{tcolorbox}[colback=gray!10,%gray background
+                      colframe=black,% black frame colour
+                      width=5cm,% Use 8cm total width,
+                      arc=1mm, auto outer arc,
+                      boxrule=0.5pt,
+                     ]
+                     \begin{center}
+                    阿贝成像实验：实验总结      
+                     \end{center}
+    \end{tcolorbox}
+\end{center}
+
+上述实验简明扼要地展示了“频谱面”的特殊意义与重要性，实验图像清晰且符合预期（必要处我放大了局部细节辅助观察）。
+我对图像的观察、思考与解释已经尽可能全面地叙述在上文对应图像附近了，实验整体是成功的。
+
+本实验中现象都可以结合傅里叶变换和频谱面的观念加以解释——这是我觉得最美妙的地方。
+比如在进行小孔滤波实验时，我移动小孔位置，
+相当于“看到了”傅里叶变换的乘积定理（见对应实验）；
+假若利用小孔光栅（实验中我简单尝试了一下），
+可观察到光屏上只有光亮而无条纹（只有直流分量），
+这其实对应着“$\delta(x)$的傅里叶变换就是1”的数学结果。
+
+实际上，空间滤波有广泛的现实应用，
+包括改良影像质量，去除高频噪声与干扰等。其中蕴含的原理都可以通过本次实验结果进行体会和理解。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\section[光学4F系统成像]{Section：光学4F系统成像}
+
+\subsection{实验目的}
+
+（1）体会和掌握光学4F成像系统的组织和搭建。
+
+（2）在前面阿贝成像实验的基础上，
+进一步体会更为复杂的光学信息处理。
+
+\subsection{实验器材}
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{cc}\toprule
+        组件名称 & 包含器件\\  \midrule
+        光源组件& 半导体激光器（$650$nm）、一维平移台、宽滑块、支杆和套筒\\ 
+        准直镜组件& 凹透镜（$\Phi 6$，$f-9.8$mm）、凸透镜（$\Phi 25$，$f-80$mm）、透镜架、滑块、支
+        杆和套筒\\ 
+        调制物组件& 物板、干板架、滑块、支杆和套筒\\
+        变换透镜组件& 凸透镜（$\Phi 40$, $f-175$mm ）、镜架、滑块、支杆和套筒\\ 
+        滤波器组件& 滤波器（低通、方向滤波）、精密平移台、干板夹、滑块、支杆和套筒\\
+        白屏组件& 白屏、干板架、滑块、支杆和套筒\\ 
+        \bottomrule
+    \end{tabular}
+    \caption{4F成像系统：实验仪器与用具列表}
+\end{table}
+
+
+\subsection{实验原理}
+
+光学4F图像处理系统使用两个透镜，
+依次实现傅里叶变换和反傅里叶变换的光学操作，
+把成像要素与频谱操作要素分离开，
+频谱面位于两个透镜的中间，对成像的干扰小。
+下图为光路原理图：
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm]{R-C.jpg}
+    \caption{4F成像系统：光路原理图}
+\end{figure}
+
+
+根据上一实验（阿贝变换），我们已经知道，透镜是对物像的光信息进行了一
+次傅里叶变换操作，
+而连续进行两次傅里叶变换操作会为原函数添加一个负号。
+一束平行光照射前焦面处的透明物体，产生待处理的图像，
+在第一个透镜的后焦面上得到物函数的频谱；
+而频谱面也是第二个透镜的前焦面，
+于是在第二个透镜的后焦面上得到第二次傅里叶变换，
+得到了原函数的倒像。可以在频谱面上插入空间滤波器，
+改变频谱函数，处理输入信号。
+
+在无滤波、放大率为1时，光学 4F 系
+统得到的像函数严格复制了原函数，
+同时消除了单透镜产
+生的附加相位因子对结果的影响，
+因此，与普通相干光学处理系统相比，较为复杂的光学 4F 系
+统的保真性更好、可控性更高。
+
+\subsection{实验内容}
+
+这一部分激光器、扩束器、准直镜不用移动。
+依次安装（间距经实验发现和讲义上描述得相差较大，
+根据实际情况调整）：
+物孔（即光栅字或者本实验中采用的“果”字白纸），
+尽量靠近准直镜（减少不必要的光程）；
+变换透镜1，按照其焦距大致寻找其所在位置，
+固定后安装变换透镜2；
+随后就可以用光屏寻找最清晰像的位置。
+
+
+注意同上一部分，
+要求“平行、等高、准直”，
+透镜放置要求“凹凸面对准平行光”。
+装置图如图所示：
+
+\begin{figure}[H]
+    \centering
+    \subfigure[4F成像系统的光路搭建]{
+        \includegraphics[height=6cm]{4F成像系统.jpg}}
+    \hspace{0.3in}
+    \subfigure[讲义实物图]{
+        \includegraphics[height=4.5cm]{4F实物图.jpg}}
+    \caption{4F成像系统：光路搭建}
+\end{figure}
+
+
+\subsection{实验结果与分析}
+
+\subsubsection*{2.5.1 初步观察“光”和“果”字}
+
+两种不同的物孔，观察到的图像如下：
+\begin{figure}[H]
+    \centering
+    \subfigure[“光”]{\includegraphics[height=5cm]{4F 光字.jpg}}\hspace{0.5cm}
+    \subfigure[“果”]{\includegraphics[height=5cm]{4F 果字.jpg}}
+    \caption{4F成像系统：初步观察}
+\end{figure}
+
+“光”字等大反向，根据尺子测量，
+二者横向尺寸相差不到0.2mm。
+原本以为“果”字不能被观察到，但实验结果却在我意料之外。
+
+
+假若去除了第二个透镜，相当于少了“反傅里叶变换”这一过程，
+光屏上的图像应是模糊、较暗、较大的。实验图像也证实了这些结果：
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=7cm]{4F 去除第二个透镜的光字.jpg}
+    \caption{去除第二个透镜的光字}
+\end{figure}
+
+
+
+\subsubsection*{2.5.2 额外观察：频谱面处安装滤波器对像的影响}
+
+这部分左老师并没有要求，
+但我见实验讲义上有，
+故简单观察了一些现象。
+
+寻找好频谱面位置之后（同样的利用光谱或者就利用滤波器不透光部分，寻找最清晰处），
+放置滤波器（水平放置“缝”）。
+光路放置图如下：
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=7cm]{4F 频谱面滤波.jpg}
+    \caption{4F成像系统的频谱面}
+\end{figure}
+
+我采用白纸倾斜的方式，希望更为清楚地记录“光”字条纹，
+实验中可观察到由竖线条纹组成（但拍摄图片没有清晰的显示这一点）。
+实验图像如下：
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=6cm]{4F 频谱面滤波 光字.jpg}
+    \caption{低通滤波结果}
+\end{figure}
+
+从图中可以看到，因为成像“光”像太小，导致观察条纹较为困难。
+我想到4F成像系统技术应该有改进发展，于是尝试搜索相关资料，
+有幸发现该光学信息处理系统的改进研究
+\footnote[1]{询问学长后得到的推荐文章：王取泉,李琳,侯勇等.改进4f傅
+里叶光学系统实现平面分形的频谱放大和小波变换[J].光学学报,2000(02):76-80.}，
+并且有助于解决我遇见的问题——利用改进的4F傅里叶光学信息处理系统，
+能实现对频谱面坐标尺度的调节和放大，从而降低了
+实验操作技术的难度并有利于提高实验精度，或许就能更好地看清条纹形状。
+希望以后有一天能应用在国科大的光学实验教学中。
+
+
+
+\subsection[4F成像系统：实验总结 ]{}
+
+\begin{center}
+    \begin{tcolorbox}[colback=gray!10,%gray background
+                      colframe=black,% black frame colour
+                      width=5cm,% Use 8cm total width,
+                      arc=1mm, auto outer arc,
+                      boxrule=0.5pt,
+                     ]
+                     \begin{center}
+                    4F成像系统：实验总结      
+                     \end{center}
+    \end{tcolorbox}
+\end{center}
+
+本实验观察了4F光学系统的成像结果（光栅和自制物孔），
+并且我还额外简单观察了滤波器对像的影响
+（结果与上一实验是相似的，包括条纹呈现、明暗过渡和边界变化等）。
+
+4F系统的名字是很有物理直观意味的，原理同阿贝变化相同。
+但前者是单成像系统，虽然简单但可控参数太少，
+甚至会造成空间信息利用不充分的现象。
+后者相比起来可控、保真、稳定性好，在实验图像中也显示出这一点。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+
+\section[假彩色编码]{Section ：假彩色编码}
+
+\subsection{实验目的}
+
+（1）在基本空间滤波的基础上，
+进一步体会光栅衍射的色散效果和选频滤波操作，
+掌握$\theta$调制假彩色编码的选频滤波和色散选区滤波的原理；
+
+（2）利用提前预制分区信息的光栅图案，
+实现该图像的假彩色编码。
+
+
+
+\subsection{实验器材}
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{cc}
+        \toprule
+        组件名称 & 包含器件\\ \midrule
+        光源组件& 白光LED、一维平移台、宽滑块、支杆和套筒\\ 
+        准直镜组件& 凸透镜（$\Phi 40$，$f-80$mm）、透镜架、滑块、支杆和套筒 \\ 
+        调制物组件& 天安门光栅（$100$线/mm）、干板架、滑块、支杆和套筒\\ 
+        变换透镜组件& 凸透镜（$\Phi 76$，$f-175$mm）、镜架、滑块、支杆和套筒\\ 
+        滤波器组件& 滤波器、干板架、滑块、支杆和套筒\\ 
+        白屏组件& 白屏、干板架、滑块、支杆和套筒\\ 
+        \bottomrule
+    \end{tabular}
+    \caption{实验仪器与用具列表}
+\end{table}
+
+\subsection{实验原理}
+
+使用白光光源来照明一个分区事先预制了不同取向光栅的天安门图案，
+然后分别使用颜色滤波器和自制的空间选色滤波器，
+来实现天安门图像的选区假彩色编码。
+
+天安门光栅中，天空、天安门、草地三个区域预制了不同方向的光栅刻线（空间频率为100线/nm），
+分别对应蓝、红、绿色。一个白光光源照射
+透明的天安门产生衍射，不同颜色的光会分散传播，经透镜汇聚在频谱面上，
+形成彩色衍射花样。
+天安门光栅上不同的区域方向不同，
+所以衍射花样会延三个不同方向展开，呈现出彩色的带状花样。
+选用三个不同方向不同颜色（红、绿、蓝）的彩色滤片，
+或一张在不同部位戳出孔洞（在实验中需要自制，根据实际情况）的白纸，
+来选取颜色通过，实现不同区域的彩色编码。
+最终在光屏上，我们会得到一个绿草地、
+红天安门和蓝天组合图像（自制滤片颜色自定）。
+
+
+
+\subsection{光路布置和调节}
+
+这部分实验需要更换光源并重新布置光路。
+要求同前面一样。值得一提的是准直操作，需要耐心检验，而且因为讲义上提供的参数不太准确，
+这一部分的光路搭建我自行调整了不少距离。
+注意LED灯和凸透镜的间距需要用尺子测量，
+并校准到产生了平行光（或者在光屏移动时，
+投射上的光并没有产生变化）。
+由于白光是多种波长的光复合而成的，
+不可能完全准直，所以搭建时差不多即可。
+
+这是我布置的光路结果：
+% \begin{figure}[H]
+%     \begin{minipage}[t]{0.45\linewidth}
+%         \centering
+%         \includegraphics[height=4cm]{}
+%         \caption{}
+%     \end{minipage}
+%     \begin{minipage}[t]{0.55\linewidth}
+%         \centering
+%         \includegraphics[height=4cm]{}
+%         \caption{}
+%     \end{minipage}
+% \end{figure}
+
+\begin{figure}[H]
+    \centering
+    \subfigure[假彩色滤波：光路布置结果]{\includegraphics[width=12cm]{天安门光路搭建.jpg}}\hspace{0.5cm}
+    \subfigure[讲义实物图]{\includegraphics[width=13cm]{天安门光路讲义例.jpg}}
+    \caption{假彩色编码：光路布置结果}
+\end{figure}
+\subsection{实验内容与结果分析}
+
+在θ调制之前，观察一下天安门图像，可以看到呈现无彩色、放大、倒立（相较于天安门光栅本身）的像：
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=7cm]{未加滤波器的天安门.jpg}
+    \caption{未加任何滤波器的天安门}
+\end{figure}
+
+
+（1）使用θ调制滤波器：安装θ调制滤波器到滤波器支架上，
+然后调整θ调制滤波器的正反上下左右位置，
+使得调制器上的三色滤片与频谱面花样的指定分支相匹配，
+即天安门图案对应红色滤片，草地对应绿色滤片，
+天空对应蓝色滤片。
+调整好后，在后面白屏上观看经编码得到的假彩色像。
+这样可以看到蓝天红天安门绿草地的像，很漂亮：
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=7cm]{滤波器呈现的天安门.jpg}
+    \caption{θ调制滤波器呈现的天安门}
+\end{figure}
+
+（2）使用自制滤波器：
+利用左老师给的纸片，
+先将硬纸片放在频谱面上并分别标记三个方向需要滤波通过的颜色，
+然后在标记点扎孔并挖去要通过的部分，重新放回频谱面，
+即可观察滤波效果。
+
+在第一次制作的时候，我只参考了讲义给的方向挖取相应的颜色，
+立即发现天安门和天空的颜色是对换的。
+从而意识到因为天安门光栅是倒立的，
+故而所需的配色结果与讲义正好相反
+（反色的天安门也做了一些观察，见本节总结），
+于是重新制作滤波器如下：
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=7cm]{天安门 自制滤波.jpg}
+    \caption{自制的滤波器}
+\end{figure}
+
+\newpage
+由此观察到与标准θ调制滤波器很相似的图像，说明实验的成功：
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=7cm]{自制滤波的天安门.jpg}
+    \caption{自制滤波器呈现的天安门}
+\end{figure}
+
+其中绿色的草地图像不怎么明显，
+原因是绿色频谱本身较窄（参见上面拍摄的自制滤波器的图像，
+或者从最后一个实验：光栅光谱仪实验的绿光图像直观看到）。
+
+（3）本次实验的思考题是“如何让天安门像中的窗户及门洞亮起来”。
+在经过思考之后，我果断选择了将自制滤波器的中心小孔打开，得到如下图像：
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=7cm]{开孔天安门.jpg}
+    \caption{初次开孔的滤波器呈现的天安门}
+\end{figure}
+
+\newpage
+但是发现因为开孔过大，导致天安门像失去了彩色，经过调整（补偿了一块微小纸片于中心），便获得彩色且门洞亮起来的天安门图像：
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=7cm]{开孔带颜色的天安门.jpg}
+    \caption{调整之后开孔滤波器呈现的天安门}
+\end{figure}
+
+
+\subsubsection*{思考题}
+
+实验中使用的天安门城楼光栅本身中的城楼的窗户和门洞都是透光的，
+但是为什么经过所提供的假着色滤波处理后所成的像中这些窗户和门洞是黑色的？有方法验证你的解释吗？
+
+通过窗户和门洞的光是直接透射，
+该部分信息聚集在频谱面中心（或者
+认为通过窗户和门洞的光通过的并非偏振的滤波，
+而是在各个方向上均有振动），而滤波
+器中心处没有开孔，因此频谱面中心所传递的图像信息，
+不能透过滤波器继续传播，白
+屏上的对应位置就是黑色的。
+故解决方法就是给中心“开孔”，上述的实验图像也佐证了我们的推理。
+
+
+\subsection[假彩色编码：实验总结 ]{}
+
+\begin{center}
+    \begin{tcolorbox}[colback=gray!10,%gray background
+                      colframe=black,% black frame colour
+                      width=5cm,% Use 8cm total width,
+                      arc=1mm, auto outer arc,
+                      boxrule=0.5pt,
+                     ]
+                     \begin{center}
+                    假彩色编码：实验总结      
+                     \end{center}
+    \end{tcolorbox}
+\end{center}
+
+本次实验在基本空间滤波的基础上，
+利用θ调制滤波器和自制的滤波器进行了选频滤波的操作，
+动手体会了光栅衍射的色散效果及相应原理在实验中的具体体现。
+还结合自己的推断，让“门窗”亮了起来——实验整体是我喜欢且满意的。
+
+自制实验开始时，我得到的结果是一个颜色不对的天安门，
+检查后发现时因为天安门光栅倒置，
+使得45°方向的天空与天安门部分的偏振光位置交换，故而我最开始自制的滤波器就会将城楼与天空颜色对换。
+
+实验过程中我也细致地
+观察了反色的天安门：门窗的成像并不如红色天安门的清晰，
+当时推测的原因是透过的“蓝色光”的强度并不如“红色光”强。
+但是根据下一节实验测量结果，估计可能是因为LED灯
+（或滤波器限制下的）的蓝色光波带太窄。
+如果使用绿色透明片进行滤波的话，
+可能边界会更不明晰。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+
+\section[光栅和光栅仪器]{Section ：光栅光谱仪实验}
+
+\subsection{实验目的}
+
+\subsubsection*{光栅衍射演示实验} 
+（1）将透射光栅放入光路中，看衍射光斑图样，
+根据光栅方程算出光栅常数d。
+
+（2）通过实验测量与计算，
+熟悉光栅的结构与衍射原理，
+熟悉光学测量的操作。
+
+\subsubsection*{光栅光谱仪测光谱实验} 
+（1）使用手持式光栅光谱仪和SpectraSmart软件测量激光或白光的光栅
+衍射光的光谱和波长
+，判断与经验值是否一致。
+
+（2）通过实验，了解LED灯的光谱，
+初步了解光栅光谱仪与相应软件的测量方法。
+
+\subsection{实验器材}
+
+\subsubsection*{光栅衍射演示实验}
+
+待测量光栅、半导体激光器、一维平移台、
+白屏、干板架、宽滑块、滑块、支杆和套筒。
+
+\subsubsection*{光栅光谱仪测光谱实验}
+
+主要仪器为OTO SE1040 便携式光栅光谱仪，
+使用$1200$线/mm光栅和CCD感光元件，$23$微米狭缝，
+通过光纤引入光源。工作波长范围为$350$-$1020$nm。
+另外还有白光LED、一维平移台、白屏、干板架、宽滑块、滑块、支杆和套筒等。
+
+\subsection{实验原理}
+
+\subsubsection*{光栅衍射演示实验}
+
+光栅由大量等宽等间距的平行狭缝构成，光线射入光栅后会发生衍射，
+光会产生分解，分别射向不同方向，其原理即为衍射的原理。
+根据光栅方程，我们可以计算出光栅的缝间距。
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=6cm]{测量光栅常数ppt.jpg}
+    \caption{测量光栅常数：讲义照片}
+\end{figure}
+
+
+\subsubsection*{光栅光谱仪测光谱实验}
+
+光栅光谱仪是用光栅作为色散元件的分光仪器，
+利用光栅将成分复杂的光分解为沿不同方向的单色光，
+可用于产生单色光，或利用光探测器测量得
+到光的波长组成。
+光栅光谱仪可用于光源的光谱分析或材料的光谱特性测量等。
+
+如图示意一种光栅光谱仪常用的Czerny-Turner型（下面简称C-T 型）光路图。
+入射光通过狭缝S1平面并以之为次波源继续传播，
+经平面反射镜M1 与凹面反射镜M2，形成平行光。
+平行光束经光栅G衍射后，不同波长的光色散为不同方向的平行光束，
+经凹面反射镜M3反射，并被聚焦在出射平面形成光谱，
+出射狭缝S2只让某一波长的单射光通过，
+故我们观察到的是单色光，采用光电倍增管可测量光强，
+转动光栅G可测得光谱组成。
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=5cm]{光栅光谱仪原理.jpg}
+    \caption{光栅光谱仪原理}
+\end{figure}
+
+实验讲义上关于本部分实验的内容很简略，故附上左老师讲义ppt以达报告撰写的完整（光栅衍射实验讲义ppt也附在了上面对应位置）：
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=6cm]{光栅光谱仪ppt.jpg}
+    \caption{光栅光谱仪实验：讲义照片}
+\end{figure}
+
+
+\subsection{实验内容}
+
+\subsubsection*{光栅衍射演示实验}
+
+将透射光栅放入光路中，看衍射光斑图样，根据光栅方程算出
+光栅常数$d$，判断与已知光栅刻缝数(据左老师介绍，有100、300、600三种规格)
+是否一致。
+光栅方程为：
+\[d\sin{\theta} = m\lambda \qquad m=0,\pm 1,\pm 2,\,\cdots\]
+这里，光栅常数$d$为相邻两缝的中心距离，即光栅每毫米刻缝数的
+倒数，$\theta$表示从干涉图样中心到第$m$级极大之间的夹角，$\lambda$表
+示光的波长，$m$表示级次。按照激光器、光栅、光屏的顺序在
+一维平移台上放置好实验器材，搭建光路，然后测量光屏
+到光栅的距离$l$、光屏上0级亮点与相邻的一个亮
+点的距离$x$。如下图所示。
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=5cm]{光栅常数测量手绘图.png}
+    \caption{光栅常数测量示意图}
+\end{figure}
+
+\subsubsection*{光栅光谱仪测光谱实验}
+
+使用手持式光栅光谱仪和SpectraSmart软件测量激光或白光的
+光栅衍射光的光谱和波长，
+判断与经验值是否一致。
+并导出数据至Word，再转至Origin软件里面绘制图像，
+对比电脑上实际显示的图像。
+
+
+\subsection{实验结果与数据处理}
+
+\subsubsection*{光栅衍射演示实验}
+
+实验中我固定了光屏到光栅的距离$l=30$cm，并且询问老师得知绿光
+波长可算作$\lambda=500$nm（但经后一实验观察，
+发现LED白光光谱中绿光波长大概在500nm-520nm之间，
+故选取510nm作为后续计算数据。）。
+下面两张图片分别是测量所用的光路展示以及测量过程中的展示：
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=13cm]{测量光栅常数.jpg}
+    \caption{测量光栅常数：光路展示}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=13cm]{获取光栅实验数据.jpg}
+    \caption{测量光栅常数：测量展示}
+\end{figure}
+
+% \begin{figure}[H]
+%     \centering
+%     \subfigure[光路展示]{\includegraphics[height=6.5cm]{}}\hspace{0.5cm}
+%     \subfigure[测量展示]{\includegraphics[height=6.5cm]{}}
+%     \caption{光栅光谱仪实验：测量光栅常数}
+% \end{figure}
+
+代入光栅每厘米刻缝数$N$的公式：
+\[
+    \frac 1N=d=\frac{m\lambda}{\sin{\theta}}=\frac{m\lambda\sqrt{x^2+l^2}}{x}=m\lambda\sqrt{1+\left(\frac{l}{x}\right)^2}
+\]
+
+得到数据表格如下(完成计算后统一保留了两位小数)：
+\begin{table}[H]
+    \centering
+    \begin{tabular}{cccc}
+        \toprule
+        极大光的级次m & 偏移中心位置x(cm) & 计算所得N($mm^{-1}$) & 平均 N($mm^{-1}$) \\ 
+        \midrule
+        -1 & 1.54  & 100.52  & \multirow{2}*{100.20}  \\ 
+        1 & 1.53  & 99.87   \\ 
+        -2 & 3.10  & 100.77  &\multirow{2}*{100.13}  \\ 
+        2 & 3.06  & 99.48   \\ 
+        -3 & 4.61  & 99.27  & \multirow{2}*{99.69}  \\ 
+        3 & 4.65  & 100.11   \\ 
+        \midrule
+        最终得到的均值$N$ & \multicolumn{3}{c}{100.00} \\ 
+        \bottomrule
+    \end{tabular}
+    \caption{数据处理：测量光栅每厘米刻缝数}
+\end{table}
+
+
+\subsubsection*{光栅光谱仪测光谱实验}
+
+该实验光路中只有白光LED灯、光栅光谱仪接收器两个部分，
+后者与支架连接固定。此时打开电脑的SpectraSmart软件，就可以看到光谱图像：
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=6.5cm]{光栅光谱仪测光谱实验.jpg}
+    \caption{光栅光谱仪测量光谱实验}
+\end{figure}
+
+观察并测量白光的光谱，可以看到各个颜色及波长的光均在其中，
+导出SpectraSmart的数据并用Origin作图。实验图像及拟合图像如下：
+
+\begin{figure}[H]
+    \centering
+    \subfigure[实测图像]{\includegraphics[height=5cm]{白光 图像.jpg}}\hspace{0.5cm}
+    \subfigure[数据拟合]{\includegraphics[height=5cm]{白光 拟合.jpg}}
+    \caption{光栅光谱仪实验：白光光谱}
+\end{figure}
+
+
+在光路中放置标准θ调制滤波器，让红色的光射入接收器，可以观察到红光光谱及波长强度等信息。
+同样的，导出数据并用Origin作图拟合，得到图像如下：
+
+\begin{figure}[H]
+    \centering
+    \subfigure[实测图像]{\includegraphics[height=5cm]{红光 图像.jpg}}\hspace{0.5cm}
+    \subfigure[数据拟合]{\includegraphics[height=5cm]{红光 拟合.jpg}}
+    \caption{光栅光谱仪实验：红光光谱}
+\end{figure}
+
+旋转标准θ调制滤波器，让蓝色的光射入接收器，可以观察到蓝光光谱及波长强度等信息。
+照样，导出数据并用origi作图拟合，得到图像如下：
+\begin{figure}[H]
+    \centering
+    \subfigure[实测图像]{\includegraphics[height=5cm]{蓝光 图像.jpg}}\hspace{0.5cm}
+    \subfigure[数据拟合]{\includegraphics[height=5cm]{蓝光 拟合.jpg}}
+    \caption{光栅光谱仪实验：蓝光光谱}
+\end{figure}
+
+再次旋转标准θ调制滤波器，让绿色的光射入接收器，可以观察到绿光光谱及波长强度等信息。
+照样，导出数据并用Origin作图拟合，得到图像如下：
+\begin{figure}[H]
+    \centering
+    \subfigure[实测图像]{\includegraphics[height=5cm]{绿光 图像.jpg}}\hspace{0.5cm}
+    \subfigure[数据拟合]{\includegraphics[height=5cm]{绿光 拟合.jpg}}
+    \caption{光栅光谱仪实验：绿光光谱}
+\end{figure}
+
+从图中我们可看出一下两点：
+
+（1）LED的灯光蓝色区域光强较大的
+（即人们常说的蓝光很强），可能对人眼并不友好，容易伤眼。
+但对此左老师提醒可能是由于实验器材LED灯的特性，不能推知一般结论。
+
+（2）一种颜色光并不一定是纯粹的同一种颜色的光波组成的，
+有可能是某一波长范围里的光的复合，这些颜色加强了该光的颜色（
+或被该光颜色波段较强的光掩盖），或者由多种光复合而成，
+从而只显现出一种颜色。
+
+实验中还测量了不同谱线的线宽，相关原始数据及处理结果见下表：
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ccccc}
+        \toprule
+        光谱范围 & 最大强度 & \multicolumn{2}{c}{半值强度波长(nm) } & 线宽(nm) \\ 
+      \midrule
+        红光 & 51170.39  & 591.78  & 654.67  & 62.89  \\ 
+        蓝光 & 31844.17  & 430.08  & 462.40  & 32.32  \\ 
+        绿光 & 55966.91  & 502.11  & 571.51  & 69.40 \\ 
+        \bottomrule
+    \end{tabular}
+    \caption{数据处理：光栅光谱仪数据汇总}
+\end{table}
+
+
+\subsection[光栅光谱仪实验：实验总结 ]{}
+
+\begin{center}
+    \begin{tcolorbox}[colback=gray!10,%gray background
+                      colframe=black,% black frame colour
+                      width=6cm,% Use 8cm total width,
+                      arc=1mm, auto outer arc,
+                      boxrule=0.5pt,
+                     ]
+                     \begin{center}
+                    光栅光谱仪实验：实验总结      
+                     \end{center}
+    \end{tcolorbox}
+\end{center}
+
+本次实验“光栅与光栅仪器”分为两个部分：
+一是测量透射光栅的每毫米刻缝数，通过实验得到$N=100$，与实际值符合得很好；
+二是利用SpectraSmart软件观察LED白光等不同波长范围的光谱，并记录和计算了三种波长范围的线宽（光谱的重要参量）数值，
+实验简单而有趣。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{实验感想与总结}
+
+本次实验是特别而有趣的：特别的是相对于其他实验，本实验基本没有数据处理与分析讨论，
+但取而代之的是需要对原理透彻理解和对图像变化的解释描述；有趣的是，
+本次实验精心安排了四个子实验，
+对Abbe成像、空间滤波、4F系统、假彩色编码和光栅光谱仪原理等进行介绍，
+并选取典型实验深入浅出地让我领略了其魅力与精彩。
+
+在短短几个小时间，我一共完成4个部分的实验。
+在Section 1中，我看到了阿贝提出的富有创造性意义的“频谱面”，
+观察到了不同滤波器对成像的影响，继而能理解空间滤波的广泛应用之原因；
+在Section 2中，我看到光学4F成像系统相较于单成像系统的优越性，并通过收集资料了解了现代光学对其的研究与改良；
+在Section 3中，我观察到θ调制滤波器对像的显著影响，并通过自制滤波器实验了这一功能。
+在思考之后，通过中心开孔的方式将天安门的门窗及孔洞等由暗变亮；
+在Section 4中，我测量了光栅常数，结果与实际值符合得非常好。
+同时了解到了十分方便的手持式光栅光谱仪，
+观测了白光等光的光谱，
+并简要测量计算了红蓝绿的线宽。
+
+但实验还没有结束——对实验图像及一些现象的进一步分析解释总结，以及实验报告的撰写都是“实验”的一部分。
+我对上述每一小节的实验图像尽可能地给出详细而准确地阐释分析，并融入我在实验过程中的一些拓展与思考
+（具体内容可参见对应的实验结果分析部分）：
+
+\begin{enumerate}
+    \item 小孔滤波实验中，
+“看到”傅里叶乘积定理和$\mathcal F[\delta (x)]=1$。
+
+\item 4F成像系统实验中，额外观察了滤波器对像的影响。
+并了解了改良4F系统对频谱坐标尺度的放大，
+或能解决我的疑问。
+
+\item 假彩色编码实验中，无意间出现的“反色天安门”引发了我的进一步思考与猜测。
+
+\end{enumerate}
+
+后续实验报告的撰写也是丝毫不能马虎的。
+尽管没有繁杂冗长的数据需要处理，
+本次实验报告的撰写时间也一点不比其他实验少。
+我利用新配置的\LaTeX 环境进行撰写，
+辅以Excel进行为数不多的数据处理，
+反复排版及润色语言，
+以期达到最好的呈现效果。
+
+此外，我还有以下的思考与感悟：
+
+·“打铁还需自身硬”。在正式做实验之前，
+必须先做好预习工作。
+比如通过认真绘制预习实验报告中的三个光路图，
+我大致了解了实验原理及实际的光路布置，这无疑提高了我的效率。
+
+·体悟理论与实验相结合的物理魅力：物理首先是一门实验学科，对它的学习如果只
+是从书本上看，从课堂上听，而没有动手亲自“学”的话，终究对其的理解和把握是有限的。
+在此之前，我对阿贝成像和光栅衍射等相关概念已
+经有所了解，但真正像这样动手放置光路并观察图像的过程中，我相信对它们的认识又加深了一层。
+
+总的来看，本次实验是成功而富有意义的。
+光学现象是肉眼可见的精彩与美妙，
+其背后蕴含的原理同样是精彩但深刻的。通过此次实验，
+我有幸对其有所了解与体悟。
+
+
+\bigskip
+——————————
+
+附：
+
+1、预习实验报告(手写pdf版导入)
+
+
+\newpage
+
+\includepdf[pages={1}]{7_草稿.pdf}
+
+
+
+\end{document}
